@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Phân loại ảnh Cat vs Dog</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 420px;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #43a047;
+        }
+
+        .image-preview {
+            margin-top: 20px;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f3f3f3;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>CNN Image Classifier</h1>
+        <p>Upload ảnh để phân loại <b>Mèo</b> hoặc <b>Chó</b></p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <br>
+            <button type="submit">Dự đoán</button>
+        </form>
+
+        {% if image %}
+        <div class="image-preview">
+            <h3>Ảnh đã tải lên</h3>
+            <img src="{{ image }}" alt="Uploaded Image">
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result">
+            Kết quả dự đoán: {{ result }}
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            Flask + CNN (PyTorch) – Deep Learning Lab
+        </div>
+    </div>
+
+</body>
+
+</html>
